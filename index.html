@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unlimited Wordle</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.0.min.js"> </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="   crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="playground"></div>
+    <script>
+
+        let data=['Abuse',
+            'Adult',
+            'Agent',
+            'Anger',
+            'Apple',
+            'Award',
+            'Basis',
+            'Beach',
+            'Birth',
+            'Block',
+            'Blood',
+            'Board',
+            'Brain',
+            'Bread',
+            'Break',
+            'Brown',
+            'Buyer',
+            'Cause',
+            'Chain',
+            'Chair',
+            'Chest',
+            'Chief',
+            'Child',
+            'China',
+            'Claim',
+            'Class',
+            'Clock',
+            'Coach',
+            'Coast',
+            'Court',
+            'Cover',
+            'Cream',
+            'Crime',
+            'Cross',
+            'Crowd',
+            'Crown',
+            'Cycle',
+            'Dance',
+            'Death',
+            'Depth',
+            'Doubt',
+            'Draft',
+            'Drama',
+            'Dream',
+            'Dress',
+            'Drink',
+            'Drive',
+            'Earth',
+            'Enemy',
+            'Entry',
+            'Error',
+            'Event',
+            'Faith',
+            'Fault',
+            'Field',
+            'Fight',
+            'Final',
+            'Floor',
+            'Focus',
+            'Force',
+            'Frame',
+            'Frank',
+            'Front',
+            'Fruit',
+            'Glass',
+            'Grant',
+            'Grass',
+            'Green',
+            'Group',
+            'Guide',
+            'Heart',
+            'Henry',
+            'Horse',
+            'Hotel',
+            'House',
+            'Image',
+            'Index',
+            'Input',
+            'Issue',
+            'Japan',
+            'Jones',
+            'Judge',
+            'Knife',
+            'Laura',
+            'Layer',
+            'Level',
+            'Lewis',
+            'Light',
+            'Limit',
+            'Lunch',
+            'Major',
+            'March',
+            'Match',
+            'Metal',
+            'Model',
+            'Money',
+            'Month',
+            'Motor',
+            'Mouth',
+            'Music',
+            'Night',
+            'Noise',
+            'North',
+            'Novel',
+            'Nurse',
+            'Offer',
+            'Order',
+            'Other',
+            'Owner',
+            'Panel',
+            'Paper',
+            'Party',
+            'Peace',
+            'Peter',
+            'Phase',
+            'Phone',
+            'Piece',
+            'Pilot',
+            'Pitch',
+            'Place',
+            'Plane',
+            'Plant',
+            'Plate',
+            'Point',
+            'Pound',
+            'Power',
+            'Press',
+            'Price',
+            'Pride',
+            'Prize',
+            'Proof',
+            'Queen',
+            'Radio',
+            'Range',
+            'Ratio',
+            'Reply',
+            'Right',
+            'River',
+            'Round',
+            'Route',
+            'Rugby',
+            'Scale',
+            'Scene',
+            'Scope',
+            'Score',
+            'Sense',
+            'Shape',
+            'Share',
+            'Sheep',
+            'Sheet',
+            'Shift',
+            'Shirt',
+            'Shock',
+            'Sight',
+            'Simon',
+            'Skill',
+            'Sleep',
+            'Smile',
+            'Smith',
+            'Smoke',
+            'Sound',
+            'South',
+            'Space',
+            'Speed',
+            'Spite',
+            'Sport',
+            'Squad',
+            'Staff',
+            'Stage',
+            'Start',
+            'State',
+            'Steam',
+            'Steel',
+            'Stock',
+            'Stone',
+            'Store',
+            'Study',
+            'Stuff',
+            'Style',
+            'Sugar',
+            'Table',
+            'Taste',
+            'Terry',
+            'Theme',
+            'Thing',
+            'Title',
+            'Total',
+            'Touch',
+            'Tower',
+            'Track',
+            'Trade',
+            'Train',
+            'Trend',
+            'Trial',
+            'Trust',
+            'Truth',
+            'Uncle',
+            'Union',
+            'Unity',
+            'Value',
+            'Video',
+            'Visit',
+            'Voice',
+            'Waste',
+            'Watch',
+            'Water',
+            'While',
+            'White',
+            'Whole',
+            'Woman',
+            'World',
+            'Youth',
+            'Aught',
+            'Ought',
+            'There',
+            'Thine',
+            'Thine',
+            'Where',
+            'Which',
+            'Whose',
+            'Whoso',
+            'Yours',
+            'Yours',
+            'Admit',
+            'Adopt',
+            'Agree',
+            'Allow',
+            'Alter',
+            'Apply',
+            'Argue',
+            'Arise',
+            'Avoid',
+            'Begin',
+            'Blame',
+            'Break',
+            'Bring',
+            'Build',
+            'Burst',
+            'Carry',
+            'Catch',
+            'Cause',
+            'Check',
+            'Claim',
+            'Clean',
+            'Clear',
+            'Climb',
+            'Close',
+            'Count',
+            'Cover',
+            'Cross',
+            'Dance',
+            'Doubt',
+            'Drink',
+            'Drive',
+            'Enjoy',
+            'Enter',
+            'Exist',
+            'Fight',
+            'Focus',
+            'Force',
+            'Guess',
+            'Imply',
+            'Issue',
+            'Judge',
+            'Laugh',
+            'Learn',
+            'Leave',
+            'Limit',
+            'Marry',
+            'Match',
+            'Occur',
+            'Offer',
+            'Order',
+            'Phone',
+            'Place',
+            'Point',
+            'Press',
+            'Prove',
+            'Raise',
+            'Reach',
+            'Refer',
+            'Relax',
+            'Serve',
+            'Shall',
+            'Share',
+            'Shift',
+            'Shoot',
+            'Sleep',
+            'Solve',
+            'Sound',
+            'Speak',
+            'Spend',
+            'Split',
+            'Stand',
+            'Start',
+            'State',
+            'Stick',
+            'Study',
+            'Teach',
+            'Thank',
+            'Think',
+            'Throw',
+            'Touch',
+            'Train',
+            'Treat',
+            'Trust',
+            'Visit',
+            'Voice',
+            'Waste',
+            'Watch',
+            'Worry',
+            'Would',
+            'Write']
+
+        let word
+        let first
+        let second
+        let third
+        let forth
+        let fifth
+        let div
+
+        start()
+
+        function generate(){
+            if(first!=null){
+                first.attr("id","")
+                second.attr("id","")
+                third.attr("id","")
+                forth.attr("id","")
+                fifth.attr("id","")
+            }
+
+            div = $("<div>")
+            div.attr("class","flexBox")
+            div.appendTo("#playground")
+            first = $("<input>")
+            first.attr("id","first")
+            first.attr("maxlength","1")
+            first.attr("onkeyup","check()")
+            first.appendTo(div)
+
+            second = $("<input>")
+            second.attr("id","second")
+            second.attr("maxlength","1")
+            second.attr("onkeyup","check()")
+            second.appendTo(div)
+
+            third = $("<input>")
+            third.attr("id","third")
+            third.attr("maxlength","1")
+            third.attr("onkeyup","check()")
+            third.appendTo(div)
+
+            forth = $("<input>")
+            forth.attr("id","forth")
+            forth.attr("maxlength","1")
+            forth.attr("onkeyup","check()")
+            forth.appendTo(div)
+
+            fifth = $("<input>")
+            fifth.attr("id","fifth")
+            fifth.attr("maxlength","1")
+            fifth.attr("onkeyup","check()")
+            fifth.appendTo(div)
+        }
+
+        function check(){
+            var one=document.getElementById("first").value
+            var two=document.getElementById("second").value
+            var three=document.getElementById("third").value
+            var four=document.getElementById("forth").value
+            var five=document.getElementById("fifth").value
+            if(one!=="" && two!=="" && three!=="" && four!=="" && five!==""){
+                first.attr("disabled",true)
+                second.attr("disabled",true)
+                third.attr("disabled",true)
+                forth.attr("disabled",true)
+                fifth.attr("disabled",true)
+                run(one,two,three,four,five)
+
+            }
+        }
+
+        function run(one,two,three,four,five){
+            let arrayFlag = [false,false,false,false,false]
+            let arrayLetters = [word[0],word[1],word[2],word[3],word[4]]
+            if(one.toLowerCase()===arrayLetters[0].toLowerCase()){
+                arrayLetters[0]=null
+                first.css("background-color","green")
+                arrayFlag[0]=true
+            }
+            if(two.toLowerCase()===arrayLetters[1].toLowerCase()){
+                arrayLetters[1]=null
+                second.css("background-color","green")
+                arrayFlag[1]=true
+            }
+            if(three.toLowerCase()===arrayLetters[2].toLowerCase()){
+                arrayLetters[2]=null
+                third.css("background-color","green")
+                arrayFlag[2]=true
+            }
+            if(four.toLowerCase()===arrayLetters[3].toLowerCase()){
+                arrayLetters[3]=null
+                forth.css("background-color","green")
+                arrayFlag[3]=true
+            }
+            if(five.toLowerCase()===arrayLetters[4].toLowerCase()){
+                arrayLetters[4]=null
+                fifth.css("background-color","green")
+                arrayFlag[4]=true
+            }
+            for(let i=0;i<5;i++){
+                if(arrayLetters[i]!=null && i!==0){
+                    if(one.toLowerCase()===arrayLetters[i].toLowerCase()){
+                        arrayLetters[i]=null
+                        first.css("background-color","yellow")
+                    }
+                }
+            }
+            for(let i=0;i<5;i++){
+                if(arrayLetters[i]!=null && i!==1){
+                    if(two.toLowerCase()===arrayLetters[i].toLowerCase()){
+                        arrayLetters[i]=null
+                        second.css("background-color","yellow")
+                    }
+                }
+            }
+            for(let i=0;i<5;i++){
+                if(arrayLetters[i]!=null && i!==2){
+                    if(three.toLowerCase()===arrayLetters[i].toLowerCase()){
+                        arrayLetters[i]=null
+                        third.css("background-color","yellow")
+                    }
+                }
+            }
+            for(let i=0;i<5;i++){
+                if(arrayLetters[i]!=null && i!==3){
+                    if(four.toLowerCase()===arrayLetters[i].toLowerCase()){
+                        arrayLetters[i]=null
+                        forth.css("background-color","yellow")
+                    }
+                }
+            }
+            for(let i=0;i<5;i++){
+                if(arrayLetters[i]!=null && i!==4){
+                    if(five.toLowerCase()===arrayLetters[i].toLowerCase()){
+                        arrayLetters[i]=null
+                        fifth.css("background-color","yellow")
+                    }
+                }
+            }
+
+            if(arrayFlag[0]===true && arrayFlag[1]===true && arrayFlag[2]===true
+                && arrayFlag[3]===true && arrayFlag[4]===true) {
+                again()
+            }
+            else{
+                // console.log(word)
+                generate()
+            }
+        }
+
+        function again(){
+            var helper = $("<div>")
+            helper.attr("class","flexBox")
+            helper.appendTo("#playground")
+            var header = $("<h1>")
+            header.text("You won!!!")
+            header.appendTo(helper)
+            var button = $("<button>")
+            button.text("Play again?")
+            button.appendTo(helper)
+            button.click(function (){
+                start()
+            })
+        }
+
+        function start(){
+            $("#playground").empty()
+            word = data[Math.floor(Math.random()*data.length)]
+            generate()
+        }
+    </script>
+<style>
+
+    input{
+        width: 9%;
+        height: 7vw;
+        margin: 5px;
+        display: inline-block;
+        font-size: 7vw;
+        text-align: center;
+        color: black;
+    }
+    .flexBox{
+        padding-left: 25%;
+    }
+    h1{
+        font-size: 50px;
+    }
+</style>
+</body>
+</html>
